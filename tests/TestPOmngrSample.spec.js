@@ -16,7 +16,7 @@ for (const data of dataset) {
   await loginPage.goTo();
 
   await page.waitForTimeout(1000);   
-  await page.screenshot({ path: 'screenshot.png' });
+  //await page.screenshot({ path: 'screenshot.png' });
 
   await loginPage.login(data.username, data.password);
 

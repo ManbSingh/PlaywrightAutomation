@@ -13,7 +13,7 @@ test(`Login Page Test for: ${data.username}`, async ({ page }) => {
   await loginPage.goTo();
 
   await page.waitForTimeout(1000);   
-  await page.screenshot({ path: 'screenshot.png' });
+  //await page.screenshot({ path: 'screenshot.png' });
 
   await loginPage.login(dataset.username, dataset.password);
 
