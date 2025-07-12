@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "tests-chrome": "npx playwright test tests/TestPOmngrSample.spec.js --config=playwright.config.js",
+    "tests-firefox": "npx playwright test tests/TestPOmngrSample.spec.js --config=playwrightconfig-firefox.js",
+    "regression": "npx playwright test tests/TestPOmngrSample.spec.js --config=playwright.config.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
