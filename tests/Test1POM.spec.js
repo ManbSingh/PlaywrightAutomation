@@ -1,9 +1,11 @@
 const { test, expect } = require('@playwright/test');
 const {LoginPage} = require('./PageObjects/LoginPage'); // ✅ Import the CLASS, not an object
 const {HomePage} = require('./PageObjects/HomePage'); // ✅ Import the CLASS, not an object
-const dataset = JSON.parse(JSON.stringify('./TestData/LoginTestData.jason'));
 
-test('First test: Login Page Test', async ({ page }) => {
+const dataset = JSON.parse(JSON.stringify(require('./TestData/LoginTestData.json')));
+
+for (const data of dataset) {
+test(`Login Page Test for: ${data.username}`, async ({ page }) => {
   // ✅ Instantiate inside the test, where `page` exists
   const loginPage = new LoginPage(page);
 
@@ -33,6 +35,9 @@ test('First test: Login Page Test', async ({ page }) => {
 
   await page.waitForTimeout(2000);
 
+  // Optionally, you can log out after the test
+  await homepage.logout();
+
   console.log('Test completed successfully');
 });
 
@@ -47,3 +52,4 @@ test('First test: Login Page Test', async ({ page }) => {
 //   console.log('Test completed successfully');
 // });
 
+}

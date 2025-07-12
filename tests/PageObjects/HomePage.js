@@ -17,6 +17,11 @@ class HomePage {
     async clickMonitors() {
         await this.listGroupMonitors.click();
     }
+
+    async logout() {
+        const logoutButton = this.page.getByRole('link', { name: 'Log out' });
+        await logoutButton.click();
+    }
 }
 
 module.exports = {HomePage};
