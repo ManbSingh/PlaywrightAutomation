@@ -47,7 +47,16 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'],
+        headless: false, // Set to true to run tests in headless mode
+        screenshot: 'only-on-failure', // Capture screenshots only on failure
+        video: 'retain-on-failure', // Record video only on failure
+        trace: 'retain-on-failure', // Retain trace files only on failure   
+        viewport: { width: 1280, height: 720 }, // Set viewport size
+        ignoreHTTPSErrors: false, // Ignore HTTPS errors
+        // Add any other browser-specific configurations here
+
+      },
     },
 
     // {
