@@ -64,7 +64,7 @@ export default defineConfig({
       name: 'firefox',
       use: { 
         ...devices['Desktop Firefox'],
-        headless: false, // Set to true to run tests in headless mode
+        headless: true, // Set to true to run tests in headless mode
         screenshot: 'only-on-failure', // Capture screenshots only on failure
         video: 'retain-on-failure', // Record video only on failure
         trace: 'retain-on-failure', // Retain trace files only on failure   
