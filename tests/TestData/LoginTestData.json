@@ -4,8 +4,6 @@
     "expected": "Login successful"
     },
     {
-},
-    {
     "username": "testsingh2",
     "password": "test",
     "expected": "Login successful"

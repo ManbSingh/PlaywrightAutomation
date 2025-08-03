@@ -42,9 +42,17 @@ if (data.expected === 'Login successful') {
   else {
     // Handle login failure case
     await loginPage.login(data.username, data.password);
-    const errorMessage = await loginPage.getErrorMessage();
-    expect(errorMessage).toContain('User does not exist.');
-    console.log(`Login failed for user as expected: ${data.username}`);
+    const [dialog] = await Promise.all([
+    page.waitForEvent('dialog'),
+    //loginPage.login(data.username, data.password), // triggers the dialog
+  ]);
+
+  // ✅ Assert inside test scope
+  expect(dialog.type()).toBe('alert');
+  expect(dialog.message()).toContain('User does not exist.');
+  console.log(`Login failed for user as expected: ${data.username}`);
+  await dialog.accept();
+
   }
 });
 
