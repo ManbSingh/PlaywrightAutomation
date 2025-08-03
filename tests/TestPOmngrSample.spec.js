@@ -17,10 +17,11 @@ for (const data of dataset) {
 
   await page.waitForTimeout(1000);   
   //await page.screenshot({ path: 'screenshot.png' });
-
-  await loginPage.login(data.username, data.password);
+if (data.expected === 'Login successful') {
+    await loginPage.login(data.username, data.password);
 
   await page.waitForTimeout(2000);
+
   const loggedinUser = await loginPage.verifyLoginSuccess();
     expect(loggedinUser).toContain('Welcome testsingh');
 
@@ -37,6 +38,22 @@ for (const data of dataset) {
     await homePage.logout();
 
   console.log('Test completed successfully');
+    }
+  else {
+    // Handle login failure case
+    await loginPage.login(data.username, data.password);
+    const [dialog] = await Promise.all([
+    page.waitForEvent('dialog'),
+    //loginPage.login(data.username, data.password), // triggers the dialog
+  ]);
+
+  // ✅ Assert inside test scope
+  expect(dialog.type()).toBe('alert');
+  expect(dialog.message()).toContain('User does not exist.');
+  console.log(`Login failed for user as expected: ${data.username}`);
+  await dialog.accept();
+
+  }
 });
 
 // test('Second test: HomePage Category Test', async ({ page }) => {

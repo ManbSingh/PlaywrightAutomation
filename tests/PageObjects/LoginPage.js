@@ -20,6 +20,7 @@ class LoginPage {
     await this.page.fill(this.passwordField, password);
     await this.page.click(this.loginButton);
   }
+  
 
   async getErrorMessage() {
     return await this.page.textContent(this.errorMessage);
