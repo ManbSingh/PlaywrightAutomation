@@ -1,18 +1,24 @@
 [{
     "username": "testsingh",
-    "password": "test"
+    "password": "test",
+    "expected": "Login successful"
+    },
+    {
 },
     {
     "username": "testsingh2",
-    "password": "test"
+    "password": "test",
+    "expected": "Login successful"
     },
      {
     "username": "testsingh3",
-    "password": "test"
+    "password": "test",
+    "expected": "Login successful"
     }
     ,
      {
     "username": "testsingh4",
-    "password": "test"
+    "password": "test",
+    "expected": "Login failed"
     }
 ]

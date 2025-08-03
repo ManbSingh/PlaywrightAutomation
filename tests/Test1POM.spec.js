@@ -14,7 +14,7 @@ test(`Login Page Test for: ${data.username}`, async ({ page }) => {
 
   await page.waitForTimeout(1000);   
   //await page.screenshot({ path: 'screenshot.png' });
-
+if (data.expected === 'Login successful') {
   await loginPage.login(dataset.username, dataset.password);
 
   await page.waitForTimeout(2000);
@@ -39,6 +39,14 @@ test(`Login Page Test for: ${data.username}`, async ({ page }) => {
   await homepage.logout();
 
   console.log('Test completed successfully');
+}
+else {
+  // Handle login failure case
+  await loginPage.login(data.username, data.password);
+  const errorMessage = await loginPage.getErrorMessage();
+  expect(errorMessage).toContain('User does not exist.');
+  console.log(`Login failed for user as expected: ${data.username}`);
+}
 });
 
 // test('Second test: HomePage Category Test', async ({ page }) => {
