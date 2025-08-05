@@ -5,6 +5,7 @@ class POManager{
         this.homePage = null;
         this.productPage = null;
         this.cartPage = null;
+        this.visualTesting = null;
     }
     
     getLoginPage() {
@@ -34,6 +35,14 @@ class POManager{
         this.cartPage = new CartPage(this.page); // Instantiate the class with the page
         }
         return this.cartPage;
+    }
+
+     getVisualTestingData() {
+        if (this.visualTesting === null) {
+        const {VisualTesting} = require('./VisualTesting');
+        this.visualTesting = new VisualTesting(this.page); // Instantiate the class with the page
+        }
+        return this.visualTesting;
     }
 }
 module.exports = { POManager };
