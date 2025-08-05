@@ -27,6 +27,7 @@ class LoginPage {
   }
 
   async verifyLoginSuccess() {
+    await this.page.waitForSelector(this.loggedInUser, { state: 'visible', timeout: 10000 });
     const loggedInUserText = await this.page.textContent(this.loggedInUser);
     console.log('Logged in user text:', loggedInUserText);
     // Verify that the logged-in user text contains the expected username
